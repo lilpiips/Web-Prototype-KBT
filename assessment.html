@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Assessment - KITS Telemedicine Kampus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Khusus untuk Halaman Assessment */
+        .assessment-hero {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .assessment-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .info-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .info-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .question-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        
+        .option-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .option-label:hover {
+            background-color: var(--accent);
+        }
+        
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .option-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        input[type="radio"]:checked + .option-radio::after {
+            opacity: 1;
+        }
+        
+        input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .btn-assessment {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        
+        .btn-assessment:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(42, 127, 202, 0.3);
+        }
+        
+        .disclaimer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            margin-top: 20px;
+        }
+        
+        /* Result Card */
+        .result-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-header {
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .result-header h3 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .result-score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 10px;
+            background-color: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+        }
+        
+        .result-body {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .btn-recommend {
+            display: inline-block;
+            margin-top: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn-recommend:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-branding">
+                <img src="assets/logo-kits.png" alt="KITS Logo" class="logo">
+                <div class="brand-text">
+                    <h1>KITS</h1>
+                    <p>Telemedicine Kampus</p>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="konsultasi.html"><i class="fas fa-comment-medical"></i> Konsultasi</a></li>
+                    <li class="active"><a href="assessment.html"><i class="fas fa-clipboard-check"></i> Self-Assessment</a></li>
+                    <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#" class="btn-login"><i class="fas fa-user"></i> Masuk</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="assessment-hero">
+            <div class="container">
+                <h2><i class="fas fa-clipboard-check"></i> Self-Assessment Kesehatan Mental</h2>
+                <p class="lead">Isi kuesioner singkat ini untuk memahami kondisi kesehatan mental Anda saat ini</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="info-section">
+                <div class="info-box">
+                    <h3><i class="fas fa-info-circle"></i> Petunjuk</h3>
+                    <ol>
+                        <li>Jawab semua pertanyaan dengan jujur</li>
+                        <li>Tidak ada jawaban benar atau salah</li>
+                        <li>Hasil ini bukan diagnosis medis</li>
+                        <li>Waktu pengerjaan sekitar 3-5 menit</li>
+                    </ol>
+                </div>
+                
+                <div class="info-box">
+                    <h3><i class="fas fa-shield-alt"></i> Kerahasiaan Terjamin</h3>
+                    <p>Semua jawaban dan hasil assessment akan dijaga kerahasiaannya sesuai dengan kebijakan privasi kami.</p>
+                </div>
+            </div>
+
+            <form id="assessmentForm">
+                <!-- Pertanyaan 1 -->
+                <div class="question-card">
+                    <div class="question-text">
+                        1. Seberapa sering Anda merasa cemas atau khawatir berlebihan dalam 2 minggu terakhir?
+                    </div>
+                    <div class="options-grid">
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="0" required>
+                            <span class="option-radio"></span>
+                            Tidak Pernah
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="1">
+                            <span class="option-radio"></span>
+                            Jarang
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="2">
+                            <span class="option-radio"></span>
+                            Kadang-kadang
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="3">
+                            <span class="option-radio"></span>
+                            Sering
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="4">
+                            <span class="option-radio"></span>
+                            Sangat Sering
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Pertanyaan 2 -->
+                <div class="question-card">
+                    <div class="question-text">
+                        2. Seberapa besar kesulitan Anda untuk tidur atau mempertahankan tidur nyenyak?
+                    </div>
+                    <div class="options-grid">
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="0" required>
+                            <span class="option-radio"></span>
+                            Tidak Pernah
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="1">
+                            <span class="option-radio"></span>
+                            Jarang
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="2">
+                            <span class="option-radio"></span>
+                            Kadang-kadang
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="3">
+                            <span class="option-radio"></span>
+                            Sering
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="4">
+                            <span class="option-radio"></span>
+                            Sangat Sering
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Pertanyaan 3 -->
+                <div class="question-card">
+                    <div class="question-text">
+                        3. Seberapa sering Anda merasa tidak bersemangat atau kehilangan minat pada aktivitas sehari-hari?
+                    </div>
+                    <div class="options-grid">
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="0" required>
+                            <span class="option-radio"></span>
+                            Tidak Pernah
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="1">
+                            <span class="option-radio"></span>
+                            Jarang
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="2">
+                            <span class="option-radio"></span>
+                            Kadang-kadang
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="3">
+                            <span class="option-radio"></span>
+                            Sering
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="4">
+                            <span class="option-radio"></span>
+                            Sangat Sering
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-assessment">
+                    <i class="fas fa-chart-bar"></i> Lihat Hasil Assessment
+                </button>
+                
+                <p class="disclaimer">
+                    * Hasil ini tidak menggantikan diagnosis profesional. Jika perlu, pertimbangkan untuk konsultasi dengan psikolog.
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="assets/logo-kits-white.png" alt="KITS Logo" class="footer-logo">
+                    <p>Platform telemedicine terintegrasi untuk layanan kesehatan mental mahasiswa di seluruh Indonesia.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="konsultasi.html">Konsultasi</a></li>
+                        <li><a href="assessment.html">Self-Assessment</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Kontak Kami</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@kits.ac.id</li>
+                        <li><i class="fas fa-phone"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Medical Center ITS, Surabaya</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 KITS. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('assessmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hitung skor
+            let score = 0;
+            const questions = ['q1', 'q2', 'q3'];
+            let allAnswered = true;
+            
+            questions.forEach(q => {
+                const selectedOption = document.querySelector(`input[name="${q}"]:checked`);
+                if (selectedOption) {
+                    score += parseInt(selectedOption.value);
+                } else {
+                    allAnswered = false;
+                }
+            });
+            
+            if (!allAnswered) {
+                alert('Harap jawab semua pertanyaan sebelum melihat hasil');
+                return;
+            }
+            
+            // Tampilkan hasil
+            const resultContainer = document.createElement('div');
+            resultContainer.className = 'result-card';
+            
+            let resultColor = '';
+            let resultMessage = '';
+            
+            if (score <= 5) {
+                resultColor = '#4CAF50';
+                resultMessage = 'Kondisi Anda terlihat stabil. Tetap jaga kesehatan mental dengan pola hidup seimbang.';
+            } else if (score <= 10) {
+                resultColor = '#FFC107';
+                resultMessage = 'Anda menunjukkan beberapa tanda stres. Pertimbangkan untuk berbicara dengan teman terpercaya atau konselor.';
+            } else {
+                resultColor = '#F44336';
+                resultMessage = 'Hasil menunjukkan tanda-tanda yang perlu diperhatikan. Kami sangat menyarankan konsultasi dengan psikolog profesional.';
+            }
+            
+            resultContainer.innerHTML = `
+                <div class="result-header" style="background-color: ${resultColor}">
+                    <h3><i class="fas fa-clipboard-check"></i> Hasil Assessment</h3>
+                    <div class="result-score">Skor Anda: ${score}/12</div>
+                </div>
+                <div class="result-body">
+                    <p>${resultMessage}</p>
+                    ${score > 5 ? '<a href="konsultasi.html" class="btn-recommend"><i class="fas fa-calendar-check"></i> Jadwalkan Konsultasi</a>' : ''}
+                </div>
+            `;
+            
+            // Hapus hasil sebelumnya jika ada
+            const existingResult = document.querySelector('.result-card');
+            if (existingResult) {
+                existingResult.remove();
+            }
+            
+            // Tambahkan hasil sebelum disclaimer
+            const disclaimer = document.querySelector('.disclaimer');
+            disclaimer.parentNode.insertBefore(resultContainer, disclaimer);
+            
+            // Scroll ke hasil
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

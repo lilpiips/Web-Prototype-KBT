@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konsultasi - KITS Telemedicine Kampus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Tambahan CSS khusus untuk halaman konsultasi */
+        .consultation-hero {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        
+        .consultation-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #2a7fca;
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #2a7fca;
+            margin-bottom: 15px;
+        }
+        
+        .consultation-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(to right, #2a7fca, #3fada8);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(42, 127, 202, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-branding">
+                <img src="assets/logo-kits.png" alt="KITS Logo" class="logo">
+                <div class="brand-text">
+                    <h1>KITS</h1>
+                    <p>Telemedicine Kampus</p>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li class="active"><a href="konsultasi.html"><i class="fas fa-comment-medical"></i> Konsultasi</a></li>
+                    <li><a href="assessment.html"><i class="fas fa-clipboard-check"></i> Self-Assessment</a></li>
+                    <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#" class="btn-login"><i class="fas fa-user"></i> Masuk</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="consultation-hero">
+            <div class="container">
+                <h2><i class="fas fa-comment-medical"></i> Konsultasi Online</h2>
+                <p class="lead">Isi form berikut untuk menjadwalkan konsultasi dengan psikolog kampus kami</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="consultation-features">
+                <div class="feature-card">
+                    <i class="fas fa-user-md"></i>
+                    <h3>Psikolog Profesional</h3>
+                    <p>Konsultasi dengan psikolog berpengalaman dari berbagai universitas</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>100% Rahasia</h3>
+                    <p>Data dan percakapan Anda sepenuhnya aman dan terjaga kerahasiaannya</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Fleksibel</h3>
+                    <p>Pilih waktu konsultasi sesuai jadwal kuliah Anda</p>
+                </div>
+            </div>
+
+            <form class="consultation-form" id="consultationForm">
+                <h3><i class="fas fa-user-circle"></i> Informasi Pribadi</h3>
+                
+                <div class="form-group">
+                    <label for="fullName">Nama Lengkap</label>
+                    <input type="text" id="fullName" class="form-control" placeholder="Masukkan nama lengkap" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nim">Nomor Induk Mahasiswa (NIM)</label>
+                    <input type="text" id="nim" class="form-control" placeholder="Masukkan NIM Anda" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="university">Universitas</label>
+                    <select id="university" class="form-control" required>
+                        <option value="">Pilih Universitas</option>
+                        <option>Institut Teknologi Sepuluh Nopember</option>
+                        <option>Universitas Airlangga</option>
+                        <option>Universitas Brawijaya</option>
+                    </select>
+                </div>
+                
+                <h3><i class="fas fa-comment-dots"></i> Informasi Konsultasi</h3>
+                
+                <div class="form-group">
+                    <label for="complaint">Keluhan Utama</label>
+                    <textarea id="complaint" class="form-control" rows="5" placeholder="Jelaskan keluhan atau permasalahan yang ingin dikonsultasikan" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Preferensi Gender Psikolog</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="psychologistGender" value="male" checked>
+                            <span class="radio-checkmark"></span>
+                            Pria
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="psychologistGender" value="female">
+                            <span class="radio-checkmark"></span>
+                            Wanita
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="psychologistGender" value="no-preference">
+                            <span class="radio-checkmark"></span>
+                            Tidak Ada Preferensi
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="consultDate">Tanggal Konsultasi</label>
+                    <input type="date" id="consultDate" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-paper-plane"></i> Ajukan Konsultasi
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="assets/logo-kits-white.png" alt="KITS Logo" class="footer-logo">
+                    <p>Platform telemedicine terintegrasi untuk layanan kesehatan mental mahasiswa di seluruh Indonesia.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="konsultasi.html">Konsultasi</a></li>
+                        <li><a href="assessment.html">Self-Assessment</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Kontak Kami</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@kits.ac.id</li>
+                        <li><i class="fas fa-phone"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Gedung UPT Kesehatan, Kampus Universitas</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 KITS. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validasi tanggal tidak boleh di masa lalu
+            const consultDate = new Date(document.getElementById("consultDate").value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (consultDate < today) {
+                alert("Mohon pilih tanggal yang valid (tidak boleh tanggal sudah lewat)");
+                return;
+            }
+            
+            // Tampilkan pesan sukses
+            alert("Terima kasih! Permintaan konsultasi Anda telah berhasil dikirim. Tim kami akan menghubungi Anda melalui email untuk konfirmasi lebih lanjut.");
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

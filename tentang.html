@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - KITS Telemedicine Kampus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2a7fca;
+            --accent: #e3f2fd;
+            --text-medium: #555;
+            --text-light: #777;
+            --white: #fff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-branding {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            height: 40px;
+            margin-right: 15px;
+        }
+        
+        .brand-text h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .brand-text p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .main-nav li {
+            margin-right: 20px;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+        
+        .main-nav a:hover, .main-nav .active a {
+            color: var(--primary);
+        }
+        
+        .btn-login {
+            background-color: var(--primary);
+            color: white !important;
+            padding: 8px 15px !important;
+            border-radius: 5px;
+        }
+        
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .about-hero h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .about-hero .lead {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Centered Vision & Mission Section */
+        .vision-mission {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .vision-mission h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .vision-mission p {
+            margin-bottom: 30px;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            color: var(--text-medium);
+        }
+        
+        .mission-list {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+            display: inline-block;
+            width: 100%;
+            max-width: 700px;
+        }
+        
+        .mission-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 15px;
+            background-color: rgba(42, 127, 202, 0.05);
+            border-radius: 6px;
+        }
+        
+        .mission-list i {
+            color: var(--primary);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        /* Team Section */
+        .team-section {
+            margin: 80px 0;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        /* CEO Container */
+        .ceo-container {
+            text-align: center;
+            max-width: 320px;
+            margin: 0 auto 50px;
+            position: relative;
+        }
+        
+        .ceo-container::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 2px;
+            background-color: var(--primary);
+            margin: 30px auto 0;
+        }
+        
+        .ceo-container .team-card {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+            border: 1px solid rgba(42, 127, 202, 0.2);
+            position: relative;
+        }
+        
+        .ceo-container .team-card::before {
+            content: "CEO";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 3px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .team-title {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .team-card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        
+        .team-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 2.8rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(42, 127, 202, 0.15);
+        }
+        
+        .team-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #222;
+        }
+        
+        .team-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .team-bio {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Partners Section */
+        .partners-section {
+            margin: 80px 0;
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 30px;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        .partner-logo {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 70px;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        /* Footer Styles */
+        .main-footer {
+            background-color: #2a2a2a;
+            color: #ddd;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-about img {
+            height: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-about p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+        
+        .footer-links h4, .footer-contact h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul, .footer-contact ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #aaa;
+        }
+        
+        .footer-contact i {
+            margin-top: 3px;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .footer-social a {
+            color: #aaa;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-social a:hover {
+            color: white;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 60px 0;
+            }
+            
+            .about-hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .mission-list {
+                padding: 0;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .team-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-branding">
+                <img src="assets/logo-kits.png" alt="KITS Logo" class="logo">
+                <div class="brand-text">
+                    <h1>KITS</h1>
+                    <p>Telemedicine Kampus</p>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="konsultasi.html"><i class="fas fa-comment-medical"></i> Konsultasi</a></li>
+                    <li><a href="assessment.html"><i class="fas fa-clipboard-check"></i> Self-Assessment</a></li>
+                    <li class="active"><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#" class="btn-login"><i class="fas fa-user"></i> Masuk</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div class="container">
+                <h2><i class="fas fa-info-circle"></i> Tentang KITS</h2>
+                <p class="lead">Mengenal lebih jauh platform telemedicine kesehatan mental untuk mahasiswa</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Centered Vision & Mission Section -->
+            <section class="vision-mission">
+                <h3><i class="fas fa-heartbeat"></i> Visi Kami</h3>
+                <p>KITS hadir untuk menjembatani kebutuhan kesehatan mental mahasiswa dengan layanan psikologis profesional yang mudah diakses, terjangkau, dan menjaga privasi pengguna.</p>
+                
+                <h3><i class="fas fa-bullseye"></i> Misi Kami</h3>
+                <ul class="mission-list">
+                    <li><i class="fas fa-check"></i> Menyediakan layanan konsultasi psikologis berkualitas</li>
+                    <li><i class="fas fa-check"></i> Meningkatkan kesadaran akan pentingnya kesehatan mental</li>
+                    <li><i class="fas fa-check"></i> Memberikan edukasi kesehatan mental berbasis bukti</li>
+                    <li><i class="fas fa-check"></i> Menjalin kerjasama dengan berbagai perguruan tinggi</li>
+                </ul>
+            </section>
+
+            <!-- Team Section -->
+            <section class="team-section">
+                <h3 class="section-title"><i class="fas fa-users"></i> Tim Kami</h3>
+                
+                <!-- CEO - Displayed Separately on Top -->
+                <div class="ceo-container">
+                    <div class="team-card">
+                        <div class="team-photo" style="background-color: #e3f2fd; color: #2a7fca;">LH</div>
+                        <h4>Lazuardi Hisyam</h4>
+                        <p class="team-role">Chief Executive Officer</p>
+                        <p class="team-bio">Mengelola arah dan strategi perusahaan secara keseluruhan serta memimpin tim eksekutif.</p>
+                    </div>
+                </div>
+
+                <!-- Executive Team - Grid Below -->
+                <h4 class="team-title"><i class="fas fa-user-friends"></i> Tim Eksekutif</h4>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-photo" style="background-color: #e3f2fd; color: #2a7fca;">AC</div>
+                        <h4>Anandya Chiara Eky Kusuma</h4>
+                        <p class="team-role">Chief Product Officer</p>
+                        <p class="team-bio">Mengelola pengembangan produk dan inovasi platform untuk pengalaman pengguna terbaik.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-photo" style="background-color: #e3f2fd; color: #2a7fca;">DZ</div>
+                        <h4>Dhemaz Zhafief Akbar</h4>
+                        <p class="team-role">Chief Revenue Officer</p>
+                        <p class="team-bio">Memimpin strategi penjualan, kemitraan, dan pertumbuhan pendapatan perusahaan.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-photo" style="background-color: #e3f2fd; color: #2a7fca;">MR</div>
+                        <h4>Muhammad Rafiif Akhdaan</h4>
+                        <p class="team-role">Chief Technology Officer</p>
+                        <p class="team-bio">Memastikan keunggulan teknologi dan keamanan platform bagi semua pengguna.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Partners Section -->
+            <section class="partners-section">
+                <h3 class="section-title"><i class="fas fa-handshake"></i> Mitra Kerjasama</h3>
+                <div class="partners-grid">
+                    <div class="partner-logo">
+                        <img src="assets/partner-its.png" alt="Institut Teknologi Sepuluh Nopember">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="assets/partner-unair.png" alt="Universitas Airlangga">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="assets/partner-ub.png" alt="Universitas Brawijaya">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="assets/partner-kemkes.png" alt="Kementerian Kesehatan">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="assets/logo-kits-white.png" alt="KITS Logo" class="footer-logo">
+                    <p>Platform telemedicine terintegrasi untuk layanan kesehatan mental mahasiswa di seluruh Indonesia.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="konsultasi.html">Konsultasi</a></li>
+                        <li><a href="assessment.html">Self-Assessment</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Kontak Kami</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@kits.ac.id</li>
+                        <li><i class="fas fa-phone"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Medical Center ITS, Surabaya</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 KITS. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
